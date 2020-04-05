@@ -18,3 +18,10 @@ exports.collection = {
     location: ['name', 'dimension', 'type']
   }
 }
+
+exports.replace_url =  function(url) {
+  if(url) {
+    return url.replace('https://rickandmortyapi.com/api', process.env.API_URL)
+  }
+  return url;
+};
