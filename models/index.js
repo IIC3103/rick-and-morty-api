@@ -9,18 +9,18 @@ replace_url =  function(url) {
 
 // Replace objects url with API_URL const
 if(process.env.API_URL && process.env.API_URL !== 'https://rickandmortyapi.com/api') {  
-  episode.find().forEach(function(ep) {
+  episode.find().exec().then(function(ep) {
     updated_characters = [];
     for(var i = 0; i < ep.characters.length; i++) {
       updated_characters.append(replace_url(ep.characters[i]));
     }
 
-    episode.update({_id: ep._id}, {
+    episode.updateOne({_id: ep._id}, {
       $set: {
         'url': replace_url(ep.url),
         'characters' : updated_characters
       }
-    });
+    }).exec();
   });
 }
 
