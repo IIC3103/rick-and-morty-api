@@ -1,4 +1,4 @@
-exports.site = 'https://rickandmortyapi.com/api'
+exports.site = process.env.API_URL ? process.env.API_URL : 'https://rickandmortyapi.com/api'
 
 exports.message = {
   noPage: 'There is nothing here',
