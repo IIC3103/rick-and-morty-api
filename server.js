@@ -46,29 +46,6 @@ if (app.get('env') !== 'test') {
   }))
 }
 
-// Replace objects url with API_URL const
-
-if(process.env.API_URL && process.env.API_URL !== 'https://rickandmortyapi.com/api') {
-  replace_func = function(url) {
-    return url.replace('https://rickandmortyapi.com/api', process.env.API_URL)
-  }
-  
-  mongoose.collection('episodes').find().forEach(function(ep) {
-    chars_2 = [];
-
-    for(var i = 0; i < ep.characters.length; i++) {
-      chars_2.append(replace_func(ep.characters[i]));
-    }
-
-    mongoose.collection('episodes').update({_id: ep._id}, {
-      $set: {
-        'url': replace_func(ep.url)
-
-      }
-    });
-  });
-}
-
 app.use(cors())
 
 app.set('trust proxy', 1)
