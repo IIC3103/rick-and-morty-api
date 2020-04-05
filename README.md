@@ -674,4 +674,13 @@ Use to http://localhost:8080/api to access the API.
 
 ---
 
+## Environment variables
+
+| Variable | Description |
+| -- | -- |
+| DATABASE | Mongo database URI |
+| NODE_ENV | Deploy environment. Use `production` for prod mode |
+| API_URL | Api base url. Default to `https://rickandmortyapi.com/api` |
+
+---
 [go to top](https://github.com/afuh/rick-and-morty-api/tree/develop#the-rick-and-morty-api)
