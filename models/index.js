@@ -20,7 +20,7 @@ if(process.env.API_URL && process.env.API_URL !== 'https://rickandmortyapi.com/a
 
       if(ep.characters && ep.characters.length > 0) {
         for(var j = 0; i < ep.characters.length; j++) {
-          updated_characters.append(replace_url(ep.characters[j]));
+          updated_characters.push(replace_url(ep.characters[j]));
         }
       } else {
         updated_characters = ep.characters
