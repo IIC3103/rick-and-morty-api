@@ -20,5 +20,6 @@ return Promise.all([
 ])
 .then(function() {
 	console.log('finish');
+	process.exit(0);
 });
 

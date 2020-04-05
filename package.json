@@ -10,6 +10,7 @@
     "start": "node ./server.js",
     "dev": "nodemon ./server.js",
     "data": "mongorestore --host=localhost:27017 --db=rickmorty --drop ./data",
+    "data:update-urls": "node ./scripts/update-urls.js",
     "test": "nyc --check-coverage --lines 95 mocha --timeout 10000 --exit && nyc report --reporter=text-lcov | coveralls",
     "test:watch": "nodemon --ext js ./test --exec 'mocha --reporter min'"
   },
