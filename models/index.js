@@ -4,28 +4,35 @@ episode = require('./Episode');
 
 
 replace_url =  function(url) {
-  return url.replace('https://rickandmortyapi.com/api', process.env.API_URL)
+  if(url) {
+    return url.replace('https://rickandmortyapi.com/api', process.env.API_URL)
+  }
+  return url;
 };
 
 // Replace objects url with API_URL const
 if(process.env.API_URL && process.env.API_URL !== 'https://rickandmortyapi.com/api') {  
-  episode.find().exec().then(function(ep) {
-    updated_characters = [];
-    
-    console.log(ep);
-    
-    if(ep.characters && ep.characters.length > 0) {
-      for(var i = 0; i < ep.characters.length; i++) {
-        updated_characters.append(replace_url(ep.characters[i]));
-      }
-    }
+  episode.find().exec().then(function(episodes) {
+    for(var i = 0; i < episodes.length; i++) {
+      ep = episodes[i];
+      updated_characters = [];
+      console.log(ep);
 
-    episode.updateOne({_id: ep._id}, {
-      $set: {
-        'url': replace_url(ep.url),
-        'characters' : updated_characters
+      if(ep.characters && ep.characters.length > 0) {
+        for(var j = 0; i < ep.characters.length; j++) {
+          updated_characters.append(replace_url(ep.characters[j]));
+        }
+      } else {
+        updated_characters = ep.characters
       }
-    }).exec();
+
+      episode.updateOne({_id: ep._id}, {
+        $set: {
+          'url': replace_url(ep.url),
+          'characters' : updated_characters
+        }
+      }).exec();
+    }
   });
 }
 
