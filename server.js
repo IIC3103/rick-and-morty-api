@@ -19,6 +19,7 @@ const api = require('./routes/api')
 
 const db = process.env.NODE_ENV === 'production' ? process.env.DATABASE : 'mongodb://localhost:27017/rickmorty'
 
+const server = {}
 // const server = new ApolloServer({
 //   typeDefs,
 //   resolvers,
