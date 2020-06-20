@@ -19,19 +19,19 @@ const api = require('./routes/api')
 
 const db = process.env.NODE_ENV === 'production' ? process.env.DATABASE : 'mongodb://localhost:27017/rickmorty'
 
-const server = {}
-// const server = new ApolloServer({
-//   typeDefs,
-//   resolvers,
-//   introspection: true,
-//   playground: true,
-//   validationRules: [ handle.depth(4) ],
-//   dataSources: () => ({
-//     character: new Character(),
-//     location: new Location(),
-//     episode: new Episode()
-//   })
-// })
+// comment to disable graphql
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  introspection: true,
+  playground: true,
+  validationRules: [ handle.depth(4) ],
+  dataSources: () => ({
+    character: new Character(),
+    location: new Location(),
+    episode: new Episode()
+  })
+})
 
 mongoose.connect(db, { useNewUrlParser: true })
 mongoose.Promise = global.Promise
@@ -56,9 +56,11 @@ app.use(express.static(path.join(__dirname, 'static')))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
+// comment to disable rest
 app.use('/api', api)
 
-// server.applyMiddleware({ app })
+// comment to disable graphql
+server.applyMiddleware({ app })
 
 app.use(handle.error.notFound)
 app.use(handle.error.productionErrors)
