@@ -3,6 +3,8 @@ require('dotenv').config()
 const mongoose = require('mongoose')
 const db = process.env.NODE_ENV === 'production' ? process.env.DATABASE : 'mongodb://localhost:27017/rickmorty'
 
+// process.env.API_URL = 'https://integracion-rick-morty-api.herokuapp.com/api';
+
 mongoose.connect(db, { useNewUrlParser: true })
 mongoose.Promise = global.Promise
 mongoose.set('useCreateIndex', true)
