@@ -6,7 +6,7 @@ const bodyParser = require('body-parser')
 const path = require('path')
 const morgan = require('morgan')
 const cors = require('cors')
-// const { ApolloServer } = require('apollo-server-express')
+const { ApolloServer } = require('apollo-server-express')
 
 const app = express()
 
