@@ -57,7 +57,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 // comment to disable rest
-app.use('/api', api)
+// app.use('/api', api)
 
 // comment to disable graphql
 server.applyMiddleware({ app })
