@@ -75,7 +75,7 @@ const checkArray = (req, res, next) => {
 
 const localhostOnly = (req, res, next) => {
   console.log('localhost only middleware');
-  consola.log(`host: ${req.get('host')}`);
+  console.log(`host: ${req.get('host')}`);
 
   if (req.get('host') === 'localhost') {
     next()
