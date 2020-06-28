@@ -4,7 +4,7 @@ const { query } = require('express-validator')
 const { catchErrors } = require('../handlers/errors')
 const { site, collection } = require('../utils/helpers')
 const operations = require('../controllers/handleOperations')
-const { pagination, checkArray, showData, checkData } = require('./middlewares')
+const { pagination, checkArray, showData, checkData, localhostOnly } = require('./middlewares')
 
 const router = express.Router()
 
@@ -25,13 +25,13 @@ router.get('/', (req, res) => {
 
 router.get('/character/avatar', (req, res) => res.redirect('/api/character'))
 
-router.get('/character', sanitize('character'), hooks.find)
+router.get('/character', sanitize('character'), hooks.find, localhostOnly)
 router.get('/character/:id', hooks.findById)
 
-router.get('/location', sanitize('location'), hooks.find)
+router.get('/location', sanitize('location'), hooks.find, localhostOnly)
 router.get('/location/:id', hooks.findById)
 
-router.get('/episode', sanitize('episode'), hooks.find)
-router.get('/episode/:id', hooks.findById)
+router.get('/episode', sanitize('episode'), hooks.find, localhostOnly)
+router.get('/episode/:id', hooks.findById, localhostOnly)
 
 module.exports = router

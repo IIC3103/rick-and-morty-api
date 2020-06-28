@@ -73,9 +73,20 @@ const checkArray = (req, res, next) => {
   next()
 }
 
+const localhostOnly = (req, res, next) => {
+  if (req.hostname === 'localhost') {
+    next()
+  } else {
+    res.status(404);
+  }
+
+  // next()
+}
+
 module.exports = {
   pagination,
   showData,
   checkData,
-  checkArray
+  checkArray,
+  localhostOnly
 }
