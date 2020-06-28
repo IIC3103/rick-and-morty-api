@@ -77,10 +77,10 @@ const localhostOnly = (req, res, next) => {
   console.log('localhost only middleware');
   console.log(`host: ${req.get('host')}`);
 
-  if (req.get('host') === 'localhost') {
+  if (/localhost/.test(req.get('host'))) {
     next()
   } else {
-    res.status(404);
+    return res.status(404);
   }
 
   // next()
