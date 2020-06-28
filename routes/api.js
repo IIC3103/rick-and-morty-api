@@ -11,8 +11,8 @@ const router = express.Router()
 const sanitize = model => query(collection.queries[model]).trim()
 
 const hooks = {
-  find: [pagination, catchErrors(operations.getAll), checkData, showData],
-  findById: [checkArray, catchErrors(operations.getById)]
+  find: [localhostOnly, pagination, catchErrors(operations.getAll), checkData, showData],
+  findById: [localhostOnly, checkArray, catchErrors(operations.getById)]
 }
 
 router.get('/', (req, res) => {
@@ -25,13 +25,13 @@ router.get('/', (req, res) => {
 
 router.get('/character/avatar', (req, res) => res.redirect('/api/character'))
 
-router.get('/character', sanitize('character'), hooks.find, localhostOnly)
+router.get('/character', sanitize('character'), hooks.find)
 router.get('/character/:id', hooks.findById)
 
-router.get('/location', sanitize('location'), hooks.find, localhostOnly)
+router.get('/location', sanitize('location'), hooks.find)
 router.get('/location/:id', hooks.findById)
 
-router.get('/episode', sanitize('episode'), hooks.find, localhostOnly)
-router.get('/episode/:id', hooks.findById, localhostOnly)
+router.get('/episode', sanitize('episode'), hooks.find)
+router.get('/episode/:id', hooks.findById)
 
 module.exports = router
