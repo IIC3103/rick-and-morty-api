@@ -80,7 +80,9 @@ const localhostOnly = (req, res, next) => {
   if (/localhost/.test(req.get('host'))) {
     next()
   } else {
-    return res.status(404);
+    return res.status(404).json({
+      error: `Rest API no disponible. Intenta usando API GraphQL: https://${req.get('host')}/graphql`
+    });
   }
 
   // next()
