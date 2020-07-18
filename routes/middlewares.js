@@ -77,15 +77,15 @@ const localhostOnly = (req, res, next) => {
   console.log('localhost only middleware');
   console.log(`host: ${req.get('host')}`);
 
-  if (/localhost/.test(req.get('host'))) {
-    next()
-  } else {
-    return res.status(404).json({
-      error: `Rest API no disponible. Intenta usando API GraphQL: https://${req.get('host')}/graphql`
-    });
-  }
+  // if (/localhost/.test(req.get('host'))) {
+  //   next()
+  // } else {
+  //   return res.status(404).json({
+  //     error: `Rest API no disponible. Intenta usando API GraphQL: https://${req.get('host')}/graphql`
+  //   });
+  // }
 
-  // next()
+  next()
 }
 
 module.exports = {
